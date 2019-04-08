@@ -1,16 +1,16 @@
 #include<stdio.h>
 int main()
 {
-	int p[20],bt[20], su[20], wt[20],tat[20],i, k, n, temp;
+	int p[20],bt[20], su[20], wt[20],tat[20],i, k, n, temp;//variable declaration 
 	float wtavg, tatavg;
-	printf("Enter the number of PROCESS  in the queue : ");
+	printf("Enter the number of PROCESS  in the queue : ");//no of process
 	scanf("%d",&n);
 	for(i=0;i<n;i++)
 	{
 		p[i] = i;
-		printf("Enter the Burst Time for process  %d : ", i+1);
+		printf("Enter the Burst Time for process  %d : ", i+1);//burst time
 		scanf("%d",&bt[i]);
-		printf("teacher/student process (0/1) ? ");
+		printf("teacher/student process (0/1) ? ");//priority is given to teacher
 		scanf("%d", &su[i]);
 	}
 	
@@ -18,7 +18,7 @@ int main()
 	{
 		for(k=i+1;k<n;k++)
 		{
-			if(su[i] > su[k])
+			if(su[i] > su[k])//when teacher is having more priority
 			{
 				temp=p[i];
 				p[i]=p[k];
@@ -38,16 +38,16 @@ int main()
 	tatavg = tat[0] = bt[0];
 	for(i=1;i<n;i++)
 	{
-		wt[i] = wt[i-1] + bt[i-1];
-		tat[i] = tat[i-1] + bt[i];
-		wtavg = wtavg + wt[i];
-		tatavg = tatavg + tat[i];
+		wt[i] = wt[i-1] + bt[i-1];//calculation of waitinng time
+		tat[i] = tat[i-1] + bt[i];//calculating turn around time
+		wtavg = wtavg + wt[i];//waituing time 
+		tatavg = tatavg + tat[i];//average tat
 	}
 	printf("\nPROCESS\t\t TEACHER/STUDENT-PROCESS \tBURST TIME\tWAITING TIME\tTURNAROUND TIME");
 	
 	for(i=0;i<n;i++)
 	{
-		printf("\n%d \t\t\t %d \t\t\t %d \t\t %d \t\t %d ",p[i]+1,su[i],bt[i],wt[i],tat[i]);
+		printf("\n%d \t\t\t %d \t\t\t %d \t\t %d \t\t %d ",p[i]+1,su[i],bt[i],wt[i],tat[i]);//value to be displayed at console
 	}
 
 	printf("\nAverage Waiting Time is %f",wtavg/n);
